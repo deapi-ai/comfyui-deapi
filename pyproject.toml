@@ -1,0 +1,22 @@
+[project]
+name = "comfyui-deapi"
+description = "deAPI nodes for ComfyUI: low-cost cloud text-to-image, image edit, background removal, upscaling, text/image-to-video, text-to-speech, music and transcription. No local GPU needed."
+version = "1.0.0"
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "deAPI Inc." }]
+keywords = ["comfyui", "deapi", "api", "text-to-image", "image-edit", "text-to-video", "image-to-video", "text-to-speech", "music", "transcription"]
+classifiers = ["Operating System :: OS Independent"]
+dependencies = ["requests>=2.25"]
+
+[project.urls]
+Homepage = "https://deapi.ai"
+Documentation = "https://docs.deapi.ai"
+Repository = "https://github.com/deapi-ai/comfyui-deapi"
+"Bug Tracker" = "https://github.com/deapi-ai/comfyui-deapi/issues"
+
+[tool.comfy]
+PublisherId = "deapi"
+DisplayName = "deAPI"
+Icon = "https://raw.githubusercontent.com/deapi-ai/comfyui-deapi/main/assets/icon.png"

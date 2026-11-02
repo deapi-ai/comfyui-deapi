@@ -1,0 +1,484 @@
+{
+ "last_node_id": 10,
+ "last_link_id": 9,
+ "nodes": [
+  {
+   "id": 1,
+   "type": "MarkdownNote",
+   "pos": [
+    0,
+    0
+   ],
+   "size": [
+    420,
+    320
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [],
+   "properties": {},
+   "widgets_values": [
+    "## deAPI\n\nSet the `DEAPI_API_KEY` environment variable before starting ComfyUI, or paste your key into the `api_key` field of each deAPI node.\n\nGet a key: https://app.deapi.ai/register\n\nLoad an image, edit it with a text instruction, cut out the subject (transparent PNG) and upscale it 4x.\n\ndeAPI Remove Background outputs mask = 1 on the subject, so it goes through **InvertMask** before **Join Image with Alpha**."
+   ]
+  },
+  {
+   "id": 2,
+   "type": "LoadImage",
+   "pos": [
+    0,
+    350
+   ],
+   "size": [
+    320,
+    360
+   ],
+   "flags": {},
+   "order": 1,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      1
+     ]
+    },
+    {
+     "name": "MASK",
+     "type": "MASK",
+     "links": []
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImage",
+    "cnr_id": "comfy-core"
+   },
+   "widgets_values": [
+    "example.png",
+    "image"
+   ]
+  },
+  {
+   "id": 3,
+   "type": "deAPIImageEdit",
+   "pos": [
+    450,
+    0
+   ],
+   "size": [
+    400,
+    440
+   ],
+   "flags": {},
+   "order": 2,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "image",
+     "type": "IMAGE",
+     "link": 1
+    },
+    {
+     "name": "image_2",
+     "type": "IMAGE",
+     "link": null,
+     "shape": 7
+    },
+    {
+     "name": "image_3",
+     "type": "IMAGE",
+     "link": null,
+     "shape": 7
+    }
+   ],
+   "outputs": [
+    {
+     "name": "image",
+     "type": "IMAGE",
+     "links": [
+      2,
+      3,
+      8
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "deAPIImageEdit",
+    "cnr_id": "comfyui-deapi",
+    "ver": "1.0.0"
+   },
+   "widgets_values": [
+    "turn it into a watercolor painting",
+    "Flux_2_Klein_4B_BF16",
+    0,
+    7,
+    "fixed",
+    "",
+    0,
+    0,
+    ""
+   ]
+  },
+  {
+   "id": 4,
+   "type": "SaveImage",
+   "pos": [
+    450,
+    480
+   ],
+   "size": [
+    400,
+    420
+   ],
+   "flags": {},
+   "order": 3,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "link": 2
+    }
+   ],
+   "outputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "links": []
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "SaveImage",
+    "cnr_id": "comfy-core"
+   },
+   "widgets_values": [
+    "deapi_edit"
+   ]
+  },
+  {
+   "id": 5,
+   "type": "deAPIRemoveBackground",
+   "pos": [
+    890,
+    0
+   ],
+   "size": [
+    320,
+    110
+   ],
+   "flags": {},
+   "order": 4,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "image",
+     "type": "IMAGE",
+     "link": 3
+    }
+   ],
+   "outputs": [
+    {
+     "name": "image",
+     "type": "IMAGE",
+     "links": [
+      5
+     ]
+    },
+    {
+     "name": "mask",
+     "type": "MASK",
+     "links": [
+      4
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "deAPIRemoveBackground",
+    "cnr_id": "comfyui-deapi",
+    "ver": "1.0.0"
+   },
+   "widgets_values": [
+    "Ben2",
+    ""
+   ]
+  },
+  {
+   "id": 6,
+   "type": "InvertMask",
+   "pos": [
+    890,
+    150
+   ],
+   "size": [
+    240,
+    60
+   ],
+   "flags": {},
+   "order": 5,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "mask",
+     "type": "MASK",
+     "link": 4
+    }
+   ],
+   "outputs": [
+    {
+     "name": "MASK",
+     "type": "MASK",
+     "links": [
+      6
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "InvertMask",
+    "cnr_id": "comfy-core"
+   },
+   "widgets_values": []
+  },
+  {
+   "id": 7,
+   "type": "JoinImageWithAlpha",
+   "pos": [
+    890,
+    250
+   ],
+   "size": [
+    260,
+    80
+   ],
+   "flags": {},
+   "order": 6,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "image",
+     "type": "IMAGE",
+     "link": 5
+    },
+    {
+     "name": "alpha",
+     "type": "MASK",
+     "link": 6
+    }
+   ],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      7
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "JoinImageWithAlpha",
+    "cnr_id": "comfy-core"
+   },
+   "widgets_values": []
+  },
+  {
+   "id": 8,
+   "type": "SaveImage",
+   "pos": [
+    1240,
+    0
+   ],
+   "size": [
+    400,
+    420
+   ],
+   "flags": {},
+   "order": 7,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "link": 7
+    }
+   ],
+   "outputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "links": []
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "SaveImage",
+    "cnr_id": "comfy-core"
+   },
+   "widgets_values": [
+    "deapi_cutout"
+   ]
+  },
+  {
+   "id": 9,
+   "type": "deAPIUpscale",
+   "pos": [
+    890,
+    380
+   ],
+   "size": [
+    320,
+    110
+   ],
+   "flags": {},
+   "order": 8,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "image",
+     "type": "IMAGE",
+     "link": 8
+    }
+   ],
+   "outputs": [
+    {
+     "name": "image",
+     "type": "IMAGE",
+     "links": [
+      9
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "deAPIUpscale",
+    "cnr_id": "comfyui-deapi",
+    "ver": "1.0.0"
+   },
+   "widgets_values": [
+    "RealESRGAN_x4",
+    ""
+   ]
+  },
+  {
+   "id": 10,
+   "type": "SaveImage",
+   "pos": [
+    1240,
+    460
+   ],
+   "size": [
+    400,
+    420
+   ],
+   "flags": {},
+   "order": 9,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "link": 9
+    }
+   ],
+   "outputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "links": []
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "SaveImage",
+    "cnr_id": "comfy-core"
+   },
+   "widgets_values": [
+    "deapi_upscaled"
+   ]
+  }
+ ],
+ "links": [
+  [
+   1,
+   2,
+   0,
+   3,
+   0,
+   "IMAGE"
+  ],
+  [
+   2,
+   3,
+   0,
+   4,
+   0,
+   "IMAGE"
+  ],
+  [
+   3,
+   3,
+   0,
+   5,
+   0,
+   "IMAGE"
+  ],
+  [
+   4,
+   5,
+   1,
+   6,
+   0,
+   "MASK"
+  ],
+  [
+   5,
+   5,
+   0,
+   7,
+   0,
+   "IMAGE"
+  ],
+  [
+   6,
+   6,
+   0,
+   7,
+   1,
+   "MASK"
+  ],
+  [
+   7,
+   7,
+   0,
+   8,
+   0,
+   "IMAGE"
+  ],
+  [
+   8,
+   3,
+   0,
+   9,
+   0,
+   "IMAGE"
+  ],
+  [
+   9,
+   9,
+   0,
+   10,
+   0,
+   "IMAGE"
+  ]
+ ],
+ "groups": [],
+ "config": {},
+ "extra": {
+  "ds": {
+   "scale": 0.8,
+   "offset": [
+    0,
+    0
+   ]
+  }
+ },
+ "version": 0.4
+}

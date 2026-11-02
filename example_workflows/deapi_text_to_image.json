@@ -1,0 +1,126 @@
+{
+ "last_node_id": 3,
+ "last_link_id": 1,
+ "nodes": [
+  {
+   "id": 1,
+   "type": "MarkdownNote",
+   "pos": [
+    0,
+    0
+   ],
+   "size": [
+    400,
+    260
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [],
+   "properties": {},
+   "widgets_values": [
+    "## deAPI\n\nSet the `DEAPI_API_KEY` environment variable before starting ComfyUI, or paste your key into the `api_key` field of each deAPI node.\n\nGet a key: https://app.deapi.ai/register"
+   ]
+  },
+  {
+   "id": 2,
+   "type": "deAPITextToImage",
+   "pos": [
+    430,
+    0
+   ],
+   "size": [
+    400,
+    420
+   ],
+   "flags": {},
+   "order": 1,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "image",
+     "type": "IMAGE",
+     "links": [
+      1
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "deAPITextToImage",
+    "cnr_id": "comfyui-deapi",
+    "ver": "1.0.0"
+   },
+   "widgets_values": [
+    "a cozy reading nook with a sleeping cat, warm evening light, 35mm photo",
+    "ZImageTurbo_INT8",
+    768,
+    768,
+    8,
+    42,
+    "fixed",
+    "",
+    ""
+   ]
+  },
+  {
+   "id": 3,
+   "type": "SaveImage",
+   "pos": [
+    860,
+    0
+   ],
+   "size": [
+    420,
+    460
+   ],
+   "flags": {},
+   "order": 2,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "link": 1
+    }
+   ],
+   "outputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "links": []
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "SaveImage",
+    "cnr_id": "comfy-core"
+   },
+   "widgets_values": [
+    "deapi"
+   ]
+  }
+ ],
+ "links": [
+  [
+   1,
+   2,
+   0,
+   3,
+   0,
+   "IMAGE"
+  ]
+ ],
+ "groups": [],
+ "config": {},
+ "extra": {
+  "ds": {
+   "scale": 0.8,
+   "offset": [
+    0,
+    0
+   ]
+  }
+ },
+ "version": 0.4
+}
