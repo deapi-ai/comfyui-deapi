@@ -1,7 +1,7 @@
 [project]
 name = "comfyui-deapi"
 description = "deAPI nodes for ComfyUI: low-cost cloud text-to-image, image edit, background removal, upscaling, text/image-to-video, text-to-speech, music and transcription. No local GPU needed."
-version = "1.0.0"
+version = "1.0.1"
 license = { file = "LICENSE" }
 readme = "README.md"
 requires-python = ">=3.10"

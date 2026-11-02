@@ -16,7 +16,8 @@ API_KEY_INPUT = ("STRING", {
     "default": "",
     "multiline": False,
     "tooltip": "deAPI API key. Leave empty to use the DEAPI_API_KEY environment variable. "
-               "Note: a key typed here is saved inside the workflow file. Get one at https://app.deapi.ai/register",
+               "A key typed here is saved in the workflow and in the metadata of every image ComfyUI saves. "
+               "Get one at https://app.deapi.ai/register",
 })
 SEED_INPUT = ("INT", {
     "default": -1, "min": -1, "max": MAX_SEED, "control_after_generate": True,

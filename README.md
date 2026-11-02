@@ -35,7 +35,7 @@ Restart ComfyUI. The nodes appear under the **deAPI** category, and you can find
    - **Environment variable (recommended):** set `DEAPI_API_KEY` before starting ComfyUI.
      - Windows (PowerShell): `$env:DEAPI_API_KEY="your-key"; python main.py`
      - macOS / Linux: `DEAPI_API_KEY=your-key python main.py`
-   - **Node input:** paste the key into the optional `api_key` field on a node. Keys typed there are saved inside the workflow, so don't share those workflows.
+   - **Node input:** paste the key into the optional `api_key` field on a node. Keys typed there are saved inside the workflow, and ComfyUI also embeds the workflow in the metadata of every PNG it saves. Don't share those workflows or images; use the environment variable instead.
 
 ## Nodes
 
