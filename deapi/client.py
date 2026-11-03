@@ -13,7 +13,7 @@ from . import __version__
 
 log = logging.getLogger("deAPI")
 
-BASE_URL = os.environ.get("DEAPI_BASE_URL", "https://api.deapi.ai/api/v2").rstrip("/")
+BASE_URL = "https://api.deapi.ai/api/v2"
 REGISTER_URL = "https://app.deapi.ai/register"
 KEYS_URL = "https://app.deapi.ai/settings/api-keys"
 USER_AGENT = f"comfyui-deapi/{__version__}"

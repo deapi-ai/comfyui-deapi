@@ -103,7 +103,6 @@ Errors appear in the ComfyUI error dialog, and they include the HTTP status and 
 | Environment variable | Purpose |
 |---|---|
 | `DEAPI_API_KEY` | API key used when a node's `api_key` field is empty |
-| `DEAPI_BASE_URL` | Override the API base URL (default `https://api.deapi.ai/api/v2`) |
 
 ## Links
 
